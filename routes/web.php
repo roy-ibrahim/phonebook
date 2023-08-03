@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [ContactController::class, 'showAll'])->name('main');
+
+Route::post('/save',[ContactController::class, 'save'])->name('save');
+
+Route::get('/create', function(){
+    return view('create');
+})->name('create');
+
+Route::delete('/delete/{contact}', [ContactController::class, 'destroy'])->name('delete');
