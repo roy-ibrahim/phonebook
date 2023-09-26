@@ -19,6 +19,16 @@ class ContactController extends Controller
             'email' => 'required',
             'phoneNumber' => 'required',
         ]);
+
+        if($request->hasFile('image')){
+            $destination_path = 'public/images';
+            $image = $request->file('image');
+            $image_name = $image->getClientOriginalName();
+            $path = $request->file('image')->storeAs($destination_path, $image_name);
+
+            $data['image'] = $image_name;
+        }
+        
         $newContact = Contact::create($data);
         return redirect(route('main'));
     }

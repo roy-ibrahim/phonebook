@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('contacts', function (Blueprint $table) {
+        Schema::create('profile', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('phoneNumber');
-            $table->string('email');
-            $table->string('image')->default('default.jpeg');
+            $table->string("title");
+            $table->string("description");
+            $table->string("phone");
+            $table->string("email");
+            $table->string('address');
+            $table->string("language");
             $table->timestamps();
-
         });
     }
 
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('contacts');
+        Schema::dropIfExists('profile');
     }
 };
